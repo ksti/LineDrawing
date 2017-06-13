@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionReusableView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="header" id="U6b-Vx-4bR" customClass="HeadView">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sDf-DI-Inv">
+                    <rect key="frame" x="8" y="8" width="304" height="34"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="sDf-DI-Inv" secondAttribute="bottom" constant="8" id="Ef2-t6-4tn"/>
+                <constraint firstItem="sDf-DI-Inv" firstAttribute="top" secondItem="U6b-Vx-4bR" secondAttribute="top" constant="8" id="LsL-NI-utD"/>
+                <constraint firstItem="sDf-DI-Inv" firstAttribute="top" secondItem="U6b-Vx-4bR" secondAttribute="top" constant="15" id="ZJe-74-S5k"/>
+                <constraint firstAttribute="trailing" secondItem="sDf-DI-Inv" secondAttribute="trailing" constant="8" id="bub-Kn-iUr"/>
+                <constraint firstItem="sDf-DI-Inv" firstAttribute="leading" secondItem="U6b-Vx-4bR" secondAttribute="leading" constant="8" id="cDK-nA-OFd"/>
+            </constraints>
+            <variation key="default">
+                <mask key="constraints">
+                    <exclude reference="ZJe-74-S5k"/>
+                </mask>
+            </variation>
+            <connections>
+                <outlet property="textLabel" destination="sDf-DI-Inv" id="Kg5-2h-Rbu"/>
+            </connections>
+        </collectionReusableView>
+    </objects>
+</document>
