@@ -8,12 +8,15 @@
 
 #import "AppDelegate.h"
 
-#import "UMCommunity.h"
+#import <UMCommunitySDK/UMCommunitySDK.h>
 
 #import "UINavigationController+StatusBar.h"
 #import "MLTransition.h"
 
 #import "NavigationViewController.h"
+
+#define kUMAppKey @"57714028e0f55a52260014b6"
+#define kUMAppSecret @"ca33333c308dc233fce4752738bc249c"
 
 @interface AppDelegate ()
 
@@ -34,7 +37,7 @@
     // 友盟社区
     // 注：AppSecret要与AppKey匹配
 //    setWithAppKey:@"54d19091fd98c55a19000406" withAppSecret:@"XXXXX"
-    [UMCommunity setAppKey:@"57714028e0f55a52260014b6" withAppSecret:@"ca33333c308dc233fce4752738bc249c"]; //需要修改微社区的Appkey
+    [UMCommunitySDK setAppkey:kUMAppKey withAppSecret:kUMAppSecret];
     
     [self settingNavBar];
     

@@ -9,7 +9,7 @@
 #import "TabBarViewController.h"
 
 #import "FirstViewController.h"
-#import "UMCommunity.h"
+#import "UMCommunityUI.h"
 
 @interface TabBarViewController () {
     NSArray *_menuArray;
@@ -113,7 +113,7 @@
     firstVC = (FirstViewController *)[self getTabBarViewController:firstVC withDictionary:_menuArray[0]];
     [self addChildViewController:firstVC];
     
-    UIViewController *communityViewController2 = [UMCommunity getFeedsViewController];
+    UIViewController *communityViewController2 = [UMCommunityUI navigationViewController];
     communityViewController2 = [self getTabBarViewController:communityViewController2 withDictionary:_menuArray[1]];
     [self addChildViewController:firstVC];
     
@@ -127,7 +127,7 @@
 
 - (void)tabBarController:(UITabBarController *)tabBarController didSelectViewController:(UIViewController *)viewController {
     if (self.selectedIndex == 0) {
-        self.title = @"儿童简笔画";
+        self.title = @"儿童简笔画精选";
     } else {
         self.title = nil;
     }

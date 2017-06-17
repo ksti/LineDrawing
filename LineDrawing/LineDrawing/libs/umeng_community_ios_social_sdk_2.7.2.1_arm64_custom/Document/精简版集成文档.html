@@ -1,0 +1,181 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><link rel="stylesheet" type="text/css" href="markdown.css"></link></head><body>
+</body></html><h1>获取SDK</h1>
+<p>在<a href="http://dev.umeng.com/wsq/ios/sdk-download">友盟微社区iOS SDK</a>下载最新的SDK。</p>
+<h2>下载SDK操作流程</h2>
+<p>在微社区最新版本上点击［SDK下载］ -&gt; ［精简版SDK］ -&gt; ［SDK下载］<br />
+<img src="http://dev.umeng.com/system/images/W1siZiIsIjIwMTYvMDcvMDYvMTNfNTZfMDZfODk2X3dzcV9zaW1wbGUxXzIwMTYwNzA1LnBuZyJdXQ/wsq_simple1_20160705.png" width="600" height="147">   </p>
+<h2>SDK可选模块说明</h2>
+<p><img src="http://dev.umeng.com/system/images/W1siZiIsIjIwMTYvMDcvMDYvMTNfNTZfNDdfNzMyX3dzcV9zaW1wbGUyXzIwMTYwNzA1LnBuZyJdXQ/wsq_simple2_20160705.png" width="600" height="124">   </p>
+<p>1.Demo工程:<br />
+包含精简版SDK的Demo，开发者可以通过查看代码来了解SDK的使用。  </p>
+<h2>SDK文件目录介绍</h2>
+<p>1.Document -- SDK集成文档、开源文档</p>
+<p>2.umeng_community_ios_simple_demo(如点选下载) -- 微社区精简版Demo  </p>
+<p>3.UMCommunitySDK -- 微社区精简版SDK</p>
+<pre><code>UMCommunitySDK      - 微社区SDK API
+UMCommunityUI       - 微社区精简版UI
+UMComDataController - 数据控制器，属于UI与SDK中间层，负责处理数据交互，解耦UI Controller
+UMComModules        - 登录、分享和消息模块，负责UI触发的登录、分享及推送消息等操作
+</code></pre>
+<h1>集成SDK（入门篇）</h1>
+<p>按照该部分的操作步骤，可以将微社区SDK集成到项目中，并使用微社区默认界面。</p>
+<h2>步骤1－将SDK导入到工程</h2>
+<ul>
+<li>将微社区SDK添加到工程，同时加入依赖的系统库: <br />
+<img src="http://dev.umeng.com/system/images/W1siZiIsIjIwMTYvMDgvMTYvMTFfNTNfMjRfMzg4X3dzcV9zaW1wbGUyXzIwMTYwODE2LnBuZyJdXQ/wsq_simple2_20160816.png" width="440" height="395">     </li>
+</ul>
+<h2>步骤2－环境配置</h2>
+<h3>info.plist配置</h3>
+<p>适配iOS9/10相关的配置参考<a href="http://dev.umeng.com/social/ios/ios9">适配iOS9/10</a>。</p>
+<h2>步骤3－调用微社区SDK</h2>
+<h3>初始化微社区</h3>
+<p>可在进入微社区主页前的代码块进行微社区SDK的初始化工作。 <br />
+比如下面在AppDelegate.m中的application:didFinishLaunchingWithOptions:进行初始化，后续举例类同。</p>
+<pre><code>#import &lt;UMCommunitySDK/UMCommunitySDK.h&gt;
+
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions{
+
+    [UMCommunitySDK setAppkey:&lt;#UMengCommunityAppkey#&gt; withAppSecret:&lt;#UMengCommunityAppSecret#&gt;];
+
+    // initialization code
+    return YES;
+}
+</code></pre>
+
+<h3>进入微社区</h3>
+<p>通过以下形式进入微社区主页:  </p>
+<ul>
+<li>直接弹出微社区navigationController的导航页</li>
+</ul>
+<pre><code>#import &quot;UMCommunityUI.h&quot;
+- (IBAction)enterCommunity:(id)sender
+{
+    [self presentViewController:[UMCommunityUI navigationViewController] animated:YES completion:nil];
+}
+</code></pre>
+
+<ul>
+<li>直接push进入微社区viewController主页</li>
+</ul>
+<pre><code>#import &quot;UMCommunityUI.h&quot;
+- (IBAction)enterCommunity:(id)sender
+{
+    [self.navigationController pushViewController:[UMCommunityUI viewController] animated:YES];
+}
+</code></pre>
+
+<ul>
+<li>效果图 <br />
+<img src="http://dev.umeng.com/system/images/W1siZiIsIjIwMTYvMDcvMDYvMTRfMTJfMDZfNDEyX3dzcV9zaW1wbGU1XzIwMTYwNzA1LnBuZyJdXQ/wsq_simple5_20160705.png" width="375" height="689"> </li>
+</ul>
+<h1>集成SDK（进阶篇）</h1>
+<h2>作为工程的rootViewController</h2>
+<p>集成代码:  </p>
+<pre><code>#import &lt;UMCommunitySDK/UMCommunitySDK.h&gt;
+#import &quot;UMCommunityUI.h&quot;
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+
+    [UMCommunitySDK setAppkey:&lt;#UMengCommunityAppkey#&gt; withAppSecret:&lt;#UMengCommunityAppSecret#&gt;];
+
+    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    [self.window makeKeyAndVisible];
+
+    self.window.rootViewController = [UMCommunityUI navigationViewController];
+
+    return YES;
+}
+</code></pre>
+
+<h2>定制登录方式</h2>
+<p>微社区中提供两种方案，供开发者选择，下面对这两种方案做详细介绍：</p>
+<h3>登录方案一</h3>
+<h4>自定义登录实现说明方法</h4>
+<p>登录界面代码是开源的，可以直接在源码上修改，详情参见SDK中：</p>
+<pre><code>UMComSimpleLoginViewController
+</code></pre>
+
+<h3>登录方案二</h3>
+<h4>登录方案使用场景说明</h4>
+<p>直接调用微社区的Api接口实现微社区的登录</p>
+<p>具体那些情况需要使用此种登录方式？<br />
+1) 开发者打开社区时就希望完成社区的用户登录，可以先调用该登录方法，返回成功后再打开微社区的界面。<br />
+2) 开发者的APP中有自己的账号系统，在APP的登录界面登录后直接调用该方法，减化APP用户的操作流程。  </p>
+<h4>登录实现说明</h4>
+<ul>
+<li>通过微社区用户系统注册和登录  </li>
+</ul>
+<pre><code>// 登录
+__weak typeof(self) weakSelf = self;
+[UMComLoginManager requestLoginWithEmailAccount:@&quot;登录邮箱&quot; password:@&quot;登录密码&quot; requestCompletion:^(NSDictionary *responseObject, NSError *error, dispatch_block_t completion) {
+    [hud hideAnimated:YES];
+    if (error) {
+        // 登录成功
+    } else {
+        // 登录失败
+
+        /**
+         *  以下调用二选一
+         */
+#define LoginWithUI //如果没有登录界面则删除此行
+#ifdef LoginWithUI
+        // 当前有登录界面时调用，weakSelf是指presentViewController弹出的UIViewController
+        [weakSelf.navigationController dismissViewControllerAnimated:YES completion:completion];
+#else
+        // 没有界面时调用，app后台静默登录，登录成功后调用callbackCompletion()用于SDK登录存储数据
+        callbackCompletion();
+#endif
+    }
+}];
+}
+</code></pre>
+
+<pre><code>// 注册，类似登录的逻辑
+__weak typeof(self) ws = self;
+[UMComLoginManager requestRegisterWithEmailAccount:@&quot;登录邮箱&quot; password:@&quot;登录密码&quot; nickName:@&quot;登录昵称&quot; requestCompletion:^(NSDictionary *responseObject, NSError *error, dispatch_block_t completion) {
+    [hud hideAnimated:YES];
+    if (error) {
+        // 注册失败
+    } else {
+        // 注册成功
+        [ws.navigationController dismissViewControllerAnimated:YES completion:completion];
+        // callbackCompletion();
+    }
+}];    
+</code></pre>
+
+<ul>
+<li>通过开发者自有账号系统登录</li>
+</ul>
+<pre><code>#import &quot;UMComLoginManager.h&quot;
+
+- (IBAction)onTouchLogin:(id)sender
+{
+    UMComLoginUser *userAccount = [[UMComLoginUser alloc] init];
+    userAccount.name = @&quot;昵称&quot;;
+    userAccount.usid = @&quot;开发者自有用户系统的用户id&quot;;
+    userAccount.icon_url = @&quot;http://xxxx.jpg&quot;;
+    userAccount.gender = [NSNumber numberWithInt:1];//性别，0-女 1-男
+    userAccount.custom = @&quot;自定义数据&quot;;  // 开发者自定义数据，用于扩展开发者特定需求
+
+    __weak typeof(self) weakSelf = self;
+    [UMComLoginManager requestLoginWithLoginAccount:userAccount requestCompletion:^(NSDictionary *responseObject, NSError *error, dispatch_block_t callbackCompletion) {
+        if (error) {
+            // 登录失败
+        } else {
+            // 登录成功
+
+            /**
+             *  以下调用二选一
+             */
+#define LoginWithUI //如果没有登录界面则删除此行
+#ifdef LoginWithUI
+            // 当前有登录界面时调用，weakSelf是指presentViewController弹出的UIViewController
+            [weakSelf dismissViewControllerAnimated:YES completion:callbackCompletion];
+#else
+            // 没有界面时调用，app后台静默登录，登录成功后调用callbackCompletion()用于SDK登录存储数据
+            callbackCompletion();
+#endif
+        }
+    }];
+}
+</code></pre>

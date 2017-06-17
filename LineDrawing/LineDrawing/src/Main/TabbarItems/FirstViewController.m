@@ -10,8 +10,6 @@
 
 #import <MobileCoreServices/MobileCoreServices.h>
 
-#import "UMCommunity.h"
-
 #import "XTPageViewController.h"
 #import "SubPageViewController.h"
 #import "ContentCollectionView.h"
