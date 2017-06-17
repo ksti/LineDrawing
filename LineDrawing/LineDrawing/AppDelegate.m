@@ -8,15 +8,36 @@
 
 #import "AppDelegate.h"
 
+#import "UMSocialQQHandler.h"
+#import "UMSocialSinaSSOHandler.h"
+#import "UMSocialWechatHandler.h"
+
 #import <UMCommunitySDK/UMCommunitySDK.h>
+#import "UMCommunityUI.h"
+
+#import "UMComMessageManager.h"
+#import "UMComLoginManager.h"
 
 #import "UINavigationController+StatusBar.h"
 #import "MLTransition.h"
 
 #import "NavigationViewController.h"
 
-#define kUMAppKey @"57714028e0f55a52260014b6"
-#define kUMAppSecret @"ca33333c308dc233fce4752738bc249c"
+//设置友盟社区appKey、appSecret
+#define UMengCommunityAppkey @"57714028e0f55a52260014b6" // online
+#define UMengCommunityAppSecret @"ca33333c308dc233fce4752738bc249c"
+
+// 设置微信AppId、appSecret，分享url
+#define kSelfDefineWXAppId @"wx96110a1e3af63a39"
+#define kSelfDefineWXAppSecret @"c60e3d3ff109a5d17013df272df99199"
+#define kSelfDefineUrlUMSocail @"http://www.umeng.com/social"
+//设置分享到QQ互联的appId和appKey
+#define kSelfDefineQQAppId @"1104606393"
+#define kSelfDefineQQAppKey @"X4BAsJAVKtkDQ1zQ"
+//设置新浪微博AppKey、appSecret
+#define kSelfDefineSinaSSOAppKey @"275392174"
+#define kSelfDefineSinaSSOAppSecret @"d96fb6b323c60a42ed9f74bfab1b4f7a"
+#define kSelfDefineUrlSinaSSORedirectURL @"http://sns.whalecloud.com/sina2/callback"
 
 @interface AppDelegate ()
 
@@ -36,10 +57,12 @@
     
     // 友盟社区
     // 注：AppSecret要与AppKey匹配
-//    setWithAppKey:@"54d19091fd98c55a19000406" withAppSecret:@"XXXXX"
-    [UMCommunitySDK setAppkey:kUMAppKey withAppSecret:kUMAppSecret];
+    [UMCommunitySDK setAppkey:UMengCommunityAppkey withAppSecret:UMengCommunityAppSecret];
     
     [self settingNavBar];
+    //
+    [self handleNotificationWithLaunchOptions:launchOptions];
+    [self setUMSocialHandler];
     
     return YES;
 }
@@ -89,6 +112,32 @@
     shadow.shadowColor = [UIColor clearColor];
     attributes[NSShadowAttributeName] = shadow;
     [[UINavigationBar appearance] setTitleTextAttributes:attributes];
+}
+
+- (void)handleNotificationWithLaunchOptions:(nullable NSDictionary *)launchOptions {
+    //后台收到消息推送之后处理消息
+    NSDictionary *notificationDict = [launchOptions valueForKey:UIApplicationLaunchOptionsRemoteNotificationKey];
+    if ([notificationDict valueForKey:@"umwsq"]) {//判断是否石友盟微社区的消息推送
+        [UMComMessageManager startWithOptions:launchOptions];
+        if ([notificationDict valueForKey:@"aps"]) // 点击推送进入
+        {
+            [UMComMessageManager didReceiveRemoteNotification:notificationDict];
+        }
+    } else {
+        [UMComMessageManager startWithOptions:nil];
+    }
+}
+
+- (void)setUMSocialHandler {
+    // 设置微信AppId、appSecret，分享url
+    //[UMSocialWechatHandler setWXAppId:@"wx96110a1e3af63a39" appSecret:@"c60e3d3ff109a5d17013df272df99199" url:@"http://www.umeng.com/social"];
+    [UMSocialWechatHandler setWXAppId:kSelfDefineWXAppId appSecret:kSelfDefineWXAppSecret url:kSelfDefineUrlUMSocail];
+    //设置分享到QQ互联的appId和appKey
+    //[UMSocialQQHandler setQQWithAppId:@"1104606393" appKey:@"X4BAsJAVKtkDQ1zQ" url:@"http://www.umeng.com/social"];
+    [UMSocialQQHandler setQQWithAppId:kSelfDefineQQAppId appKey:kSelfDefineQQAppKey url:kSelfDefineUrlUMSocail];
+    //设置新浪微博的appKey和appSecret
+    //[UMSocialSinaSSOHandler openNewSinaSSOWithAppKey:@"275392174" secret:@"d96fb6b323c60a42ed9f74bfab1b4f7a" RedirectURL:@"http://sns.whalecloud.com/sina2/callback"];
+    [UMSocialSinaSSOHandler openNewSinaSSOWithAppKey:kSelfDefineSinaSSOAppKey secret:kSelfDefineSinaSSOAppSecret RedirectURL:kSelfDefineUrlSinaSSORedirectURL];
 }
 
 @end
