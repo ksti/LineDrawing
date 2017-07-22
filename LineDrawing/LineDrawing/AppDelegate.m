@@ -32,8 +32,8 @@
 #define kSelfDefineWXAppSecret @"c60e3d3ff109a5d17013df272df99199"
 #define kSelfDefineUrlUMSocail @"http://www.umeng.com/social"
 //设置分享到QQ互联的appId和appKey
-#define kSelfDefineQQAppId @"1104606393"
-#define kSelfDefineQQAppKey @"X4BAsJAVKtkDQ1zQ"
+#define kSelfDefineQQAppId @"1104955437"
+#define kSelfDefineQQAppKey @"jYFc33iiSqW0lwrZ"
 //设置新浪微博AppKey、appSecret
 #define kSelfDefineSinaSSOAppKey @"275392174"
 #define kSelfDefineSinaSSOAppSecret @"d96fb6b323c60a42ed9f74bfab1b4f7a"
@@ -62,6 +62,7 @@
     [self settingNavBar];
     //
     [self handleNotificationWithLaunchOptions:launchOptions];
+    //
     [self setUMSocialHandler];
     
     return YES;
@@ -138,6 +139,16 @@
     //设置新浪微博的appKey和appSecret
     //[UMSocialSinaSSOHandler openNewSinaSSOWithAppKey:@"275392174" secret:@"d96fb6b323c60a42ed9f74bfab1b4f7a" RedirectURL:@"http://sns.whalecloud.com/sina2/callback"];
     [UMSocialSinaSSOHandler openNewSinaSSOWithAppKey:kSelfDefineSinaSSOAppKey secret:kSelfDefineSinaSSOAppSecret RedirectURL:kSelfDefineUrlSinaSSORedirectURL];
+}
+
+#pragma mark UMComLoginManager
+- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
+{
+    BOOL result = [UMComLoginManager handleOpenURL:url];
+    if (result == FALSE) {
+        //调用其他SDK，例如新浪微博SDK等
+    }
+    return result;
 }
 
 @end

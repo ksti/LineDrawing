@@ -83,7 +83,7 @@
     temp.tabBarItem.image =[UIImage imageNamed:dicMenu[@"defaultImg"]];
     [temp.tabBarItem setSelectedImage:[[UIImage imageNamed: dicMenu[@"selectedImg"]] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
     [temp.tabBarItem setTitleTextAttributes:@{NSForegroundColorAttributeName:KColorNavRed} forState:UIControlStateSelected];
-    [temp.tabBarItem setTitleTextAttributes:@{NSForegroundColorAttributeName:KColorNavRed} forState:UIControlStateNormal];
+    [temp.tabBarItem setTitleTextAttributes:@{NSForegroundColorAttributeName:KColorTextLightGray} forState:UIControlStateNormal];
     return temp;
     
 }

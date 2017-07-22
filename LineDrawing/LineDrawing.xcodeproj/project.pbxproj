@@ -231,6 +231,7 @@
 		06759EC91D1842FE00045671 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 06759EC71D1842FE00045671 /* Main.storyboard */; };
 		06759ECE1D1842FE00045671 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 06759ECC1D1842FE00045671 /* LaunchScreen.xib */; };
 		06759EDA1D1842FF00045671 /* LineDrawingTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 06759ED91D1842FF00045671 /* LineDrawingTests.m */; };
+		06AE76CE1F23C2290021E833 /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 06AE76CD1F23C2290021E833 /* ImageIO.framework */; };
 		07531D9F1D2E7C4300DA809D /* ImagesCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 07531D9D1D2E7C4300DA809D /* ImagesCollectionViewCell.m */; };
 		07531DA01D2E7C4300DA809D /* ImagesCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 07531D9E1D2E7C4300DA809D /* ImagesCollectionViewCell.xib */; };
 		079C63881D2BC3950004EFFC /* CollectionImagesModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 079C63871D2BC3950004EFFC /* CollectionImagesModel.m */; };
@@ -786,6 +787,7 @@
 		06759ED31D1842FF00045671 /* LineDrawingTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LineDrawingTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		06759ED81D1842FF00045671 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		06759ED91D1842FF00045671 /* LineDrawingTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LineDrawingTests.m; sourceTree = "<group>"; };
+		06AE76CD1F23C2290021E833 /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
 		07531D9C1D2E7C4300DA809D /* ImagesCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImagesCollectionViewCell.h; sourceTree = "<group>"; };
 		07531D9D1D2E7C4300DA809D /* ImagesCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImagesCollectionViewCell.m; sourceTree = "<group>"; };
 		07531D9E1D2E7C4300DA809D /* ImagesCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ImagesCollectionViewCell.xib; sourceTree = "<group>"; };
@@ -1024,6 +1026,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				06AE76CE1F23C2290021E833 /* ImageIO.framework in Frameworks */,
 				062613101EF2DAFD0005CE4B /* libSocialQQ.a in Frameworks */,
 				0643BD771D219064007806A5 /* MobileCoreServices.framework in Frameworks */,
 				062613021EF2DAFD0005CE4B /* libUMSocial_Sdk.a in Frameworks */,
@@ -1118,6 +1121,7 @@
 		0620310E1D1FE07A006A23F6 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				06AE76CD1F23C2290021E833 /* ImageIO.framework */,
 				0643BD761D219064007806A5 /* MobileCoreServices.framework */,
 				062031211D1FE15A006A23F6 /* AVFoundation.framework */,
 				0620311F1D1FE153006A23F6 /* AssetsLibrary.framework */,
@@ -3355,7 +3359,6 @@
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/umeng_community_ios_v2.6.0/Community_component/UMSocial_Sdk/UMSocial_Sdk_Extra_Frameworks/TencentOpenAPI",
 					"$(PROJECT_DIR)/LineDrawing/libs/umeng_community_ios_social_sdk_2.7.2.1_arm64_custom/UMCommunitySDK/UMCommunitySDK",
 					"$(PROJECT_DIR)/LineDrawing/libs/umeng_community_ios_social_sdk_2.7.2.1_arm64_custom/UMCommunitySDK/UMComThirdComponent/UMSocial_Sdk/UMSocial_Sdk_Extra_Frameworks/TencentOpenAPI",
 				);
@@ -3378,7 +3381,8 @@
 					"$(PROJECT_DIR)/LineDrawing/libs/umeng_community_ios_social_sdk_2.7.2.1_arm64_custom/UMCommunitySDK/UMComThirdComponent/UMSocial_Sdk/UMSocial_Sdk_Extra_Frameworks/TencentOpenAPI",
 					"$(PROJECT_DIR)/LineDrawing/libs/umeng_community_ios_social_sdk_2.7.2.1_arm64_custom/UMCommunitySDK/UMComThirdComponent/UMSocial_Sdk/UMSocial_Sdk_Extra_Frameworks/Wechat",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.GJS.$(PRODUCT_NAME:rfc1034identifier)";
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_BUNDLE_IDENTIFIER = com.wrh.child.draw;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 			};
@@ -3395,7 +3399,6 @@
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/umeng_community_ios_v2.6.0/Community_component/UMSocial_Sdk/UMSocial_Sdk_Extra_Frameworks/TencentOpenAPI",
 					"$(PROJECT_DIR)/LineDrawing/libs/umeng_community_ios_social_sdk_2.7.2.1_arm64_custom/UMCommunitySDK/UMCommunitySDK",
 					"$(PROJECT_DIR)/LineDrawing/libs/umeng_community_ios_social_sdk_2.7.2.1_arm64_custom/UMCommunitySDK/UMComThirdComponent/UMSocial_Sdk/UMSocial_Sdk_Extra_Frameworks/TencentOpenAPI",
 				);
@@ -3418,7 +3421,8 @@
 					"$(PROJECT_DIR)/LineDrawing/libs/umeng_community_ios_social_sdk_2.7.2.1_arm64_custom/UMCommunitySDK/UMComThirdComponent/UMSocial_Sdk/UMSocial_Sdk_Extra_Frameworks/TencentOpenAPI",
 					"$(PROJECT_DIR)/LineDrawing/libs/umeng_community_ios_social_sdk_2.7.2.1_arm64_custom/UMCommunitySDK/UMComThirdComponent/UMSocial_Sdk/UMSocial_Sdk_Extra_Frameworks/Wechat",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.GJS.$(PRODUCT_NAME:rfc1034identifier)";
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_BUNDLE_IDENTIFIER = com.wrh.child.draw;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 			};

@@ -142,7 +142,9 @@
                     hud.label.text = UMComLocalizedString(@"um_com_loginingContent",@"登录中...");
                     hud.label.backgroundColor = [UIColor clearColor];
                     [UMComLoginManager requestLoginWithLoginAccount:account requestCompletion:^(NSDictionary *responseObject, NSError *error, dispatch_block_t completion) {
-                        [hud hideAnimated:YES];
+                        dispatch_async(dispatch_get_main_queue(), ^{
+                            [hud hideAnimated:YES];
+                        });
                         if (error) {
                             [UMComShowToast showFetchResultTipWithError:error];
                         }
