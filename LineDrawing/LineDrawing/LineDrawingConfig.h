@@ -14,14 +14,12 @@
  */
 //
 #if DEBUG
-//#define API_SERVER_URL [[NSUserDefaults standardUserDefaults] objectForKey:CONFIG_SERVER_URL]
 #define API_SERVER_URL @"http://4.77587.sinaapp.com"
-#define API_IMAGES_URL @"http://77587-interesting.stor.sinaapp.com"
+#define API_IMAGES_URL @"https://sinacloud.net/lifency/childdraw"
 
 #else
-//#define API_SERVER_URL [[NSUserDefaults standardUserDefaults] objectForKey:CONFIG_SERVER_URL]
 #define API_SERVER_URL @"http://4.77587.sinaapp.com"
-#define API_IMAGES_URL @"http://77587-interesting.stor.sinaapp.com"
+#define API_IMAGES_URL @"https://sinacloud.net/lifency/childdraw"
 #endif
 
 
